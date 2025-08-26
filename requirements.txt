@@ -1,0 +1,10 @@
+numpy
+pandas
+pyarrow
+scikit-learn
+torch
+torchaudio
+matplotlib
+pyserial
+python-dotenv
+twilio
