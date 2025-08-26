@@ -1,0 +1,19 @@
+# Python cache/venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+.venv/
+.env
+
+# VS Code
+.vscode/
+
+# Data & models
+data/raw/
+data/processed/
+models/
+
+# OS files
+.DS_Store

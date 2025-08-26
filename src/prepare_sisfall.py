@@ -16,22 +16,31 @@ ADL_PAT  = re.compile(r'(?:^|[^A-Za-z])D\d{2}(?:[^A-Za-z]|$)', re.IGNORECASE)
 WINDOW = 256   # ~1.28s at 200 Hz
 STRIDE = 64    # ~0.32s hop
 
+import re
+
 def read_trial(path):
     data = []
-    with open(path, 'r', errors='ignore') as f:
+    with open(path, "r", errors="ignore") as f:
         for line in f:
-            parts = line.strip().split()
-            if len(parts) < 6:
+            s = line.strip()
+            if not s:
                 continue
-            try:
-                row = [float(x.replace(',', '.')) for x in parts[:9]]
-                if len(row) < 6:
+            # Split on commas/semicolons/whitespace
+            parts = re.split(r"[,\s;]+", s)
+            # Filter numeric tokens and convert to float
+            nums = []
+            for x in parts:
+                if x == "":
                     continue
-                if len(row) < 9:
-                    row += [0.0] * (9 - len(row))
-                data.append(row)
-            except ValueError:
+                try:
+                    nums.append(float(x))
+                except ValueError:
+                    pass
+            if len(nums) < 6:
                 continue
+            # Keep first 9 channels, pad to 9
+            nums = nums[:9] + [0.0] * max(0, 9 - len(nums[:9]))
+            data.append(nums)
     return np.asarray(data, dtype=np.float32)
 
 def windows_from_signal(sig, window=WINDOW, stride=STRIDE):
