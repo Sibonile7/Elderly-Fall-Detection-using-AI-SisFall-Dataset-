@@ -1,5 +1,5 @@
 Elderly Fall Detection using AI (SisFall Dataset)
-📖 Overview
+Overview
 
 This project detects falls in elderly people using the SisFall dataset and a deep learning model.
 When a fall is detected in real-time from wearable IMU data (e.g., MPU6050 on Arduino/ESP32), the system sends an SMS alert to caregivers or family members.
