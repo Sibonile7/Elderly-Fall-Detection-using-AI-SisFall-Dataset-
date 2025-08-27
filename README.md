@@ -26,3 +26,12 @@ When a fall is detected in real-time from wearable IMU data (e.g., MPU6050 on Ar
 - Falls — Precision: **0.828**, Recall: **0.980**, F1: **0.897**  
 - Confusion: `[[20340, 657], [65, 3160]]`
 
+Key Points
+
+The system is highly effective at detecting falls, prioritizing safety by rarely missing actual falls.
+
+False alarms exist (~3% of ADL windows), but this trade-off is generally acceptable in healthcare applications.
+
+Results appear very strong because SisFall is a controlled, simulated dataset. Real-world elderly falls are slower, noisier, and less predictable, so performance may be lower outside simulation.
+
+👉 This project is therefore best viewed as a proof-of-concept with excellent benchmark results, but requiring further validation on real-world data before deployment.
